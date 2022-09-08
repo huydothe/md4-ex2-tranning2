@@ -71,6 +71,17 @@ app.get('/book/list',(req,res)=>{
     })
 })
 
+app.get('/book/detail',(req,res)=>{
+    const sql = `select * from books where id = ${req.query.id}`;
+    connection.query(sql,(err,result)=>{
+        if(err){
+            throw new Error(err.message);
+        }
+        console.log(result);
+        res.render('detail',{book:result[0]});
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 })

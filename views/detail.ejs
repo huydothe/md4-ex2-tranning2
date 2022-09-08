@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Detail book</title>
+</head>
+<body>
+
+<p>Name : <%= book.name%></p>
+<p>price : <%= book.price%></p>
+<p>Quantity : <%= book.quantity%></p>
+<p>Author : <%= book.author%></p>
+<p>
+    <button onclick="backList()">Back to List</button>
+</p>
+
+
+<script>
+    function backList(){
+        window.open(`http://localhost:3000/book/list`);
+    }
+</script>
+</body>
