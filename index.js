@@ -72,16 +72,27 @@ app.get('/book/list',(req,res)=>{
 })
 
 app.get('/book/detail',(req,res)=>{
+    console.log(req.query)
     const sql = `select * from books where id = ${req.query.id}`;
     connection.query(sql,(err,result)=>{
         if(err){
             throw new Error(err.message);
         }
-        console.log(result);
         res.render('detail',{book:result[0]});
     })
 })
 
+app.get('/book/delete',(req, res) => {
+    console.log(req.body);
+    const sql = `delete from books where id=${req.body.id}`
+    connection.query(sql,(err,result)=>{
+        if(err){
+            throw new Error(err.message);
+        }
+        res.json({status:200, message:"delete success"});
+    });
+});
+
 app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+    console.log(`Server is running at http://localhost:${port}/book/list`);
 })
